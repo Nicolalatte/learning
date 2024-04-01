@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1 id="title">Survey on Main Courses</h1>
+    <p id="description">Thank you for participating in the taste-test. We hope you've had a pleasant experience. Please complete our survey to let us know which dish stood out.</p>
+    <form method="post" id="survey-form">
+
+<!---Judge's Info--->
+      <fieldset>
+        <legend>Judge's Info</legend> 
+        <label id="name-label">Name of Judge: <input id="name" name="name" type="text" required placeholder="Enter your name"/></label>
+        <label id="email-label">Email: <input id="email" name="email" type="email" required placeholder="Enter your email"/></label>
+      </fieldset>
+
+<!---Candidate INFO--->
+      <fieldset>
+        <legend>Candidate Info</legend>        
+        <label id="number-label">Candidate Number: <input id="number" name="number" type="number" min="1" max="10" placeholder="Enter the candidate's number"/></label>
+        <label for="league-platinum"> Enter the candidate's league: <input id="league-platinum" type="radio" name="league" class="inline" value="5" checked /> Platinum</label>
+        <label for="league-gold"><input id="league-gold" type="radio" name="league" class="inline" value="3"/> Gold</label>
+      </fieldset>
+
+<!---Dish Prepared--->
+      <fieldset>
+        <legend>Dish Prepared</legend>  
+        <label id="dropdown-label">Which main course was your favorite?
+          <select id="dropdown" name="dropdown">
+            <option value="">(select one)</option>
+            <option value="1">Chicken Breast and Spicy Carrot Puree with Honey-Sage Reduction</option>
+            <option value="2">Roasted Halibut, Pickled Jalapenos and Charred Peaches</option>
+            <option value="3">Coffee Cured Beef Steak with Parsnip Puree</option>
+          </select>
+        </label>
+        <label><input class="inline" id="presentation" type="checkbox" required name="presentation" value="Presentation"/>The dish is visually appealing
+      </label>
+      <label><input class="inline" id="suitability" type="checkbox" required name="suitability" value="Suitability"/> The dish is appropriate given the task
+      </label>
+      </fieldset>
+      <fieldset>
+        <label for="comments">Provide further comments / detail:
+          <textarea id="comments" name="comments" rows="10" cols="30" placeholder="I like the flavor profile..."></textarea>
+        </label>
+      </fieldset>
+      <input type="submit" id="submit" />
+    </form>
+  </body>
+</html>
