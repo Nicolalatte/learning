@@ -55,7 +55,7 @@ const locations = [
   {
     name: "cave",
     "button text": ["Fight slime", "Fight fanged beast", "Go to town square"],
-    "button functions": [fightSlime, fightBeast, goTown],
+    "button functions": [fightSlime, fightBeast, randomRedirect],
     text: "You enter the cave. You see some monsters."
   },
   {
@@ -87,7 +87,13 @@ const locations = [
     "button text": ["2", "8", "Go to town square?"],
     "button functions": [pickTwo, pickEight, goTown],
     text: "You find a secret game. Pick a number above. Ten numbers will be randomly chosen between 0 and 10. If the number you choose matches one of the random numbers, you win!"
-  }
+  },
+  {
+    name: "fortune cookie", 
+    "button text": ["Red", "Blue", "Go back to town square."],
+    "button functions": [pickRed, pickBlue, goTown],
+    text: "You stumble on two plates with different colored cookies on each. One has blue icing, and the other has red. Which do you want to eat?"
+   }
 ];
 
 // initialize buttons
@@ -104,6 +110,17 @@ function update(location) {
   button2.onclick = location["button functions"][1];
   button3.onclick = location["button functions"][2];
   text.innerHTML = location.text;
+}
+
+function randomRedirect() {
+ const randomNumber = Math.random();  
+ if (randomNumber < 0.5) {
+   fortuneCookie();
+ } else if (Math.random() < 0.1) { 
+   easterEgg();
+ } else {
+   goTown();
+ }
 }
 
 function goTown() {
@@ -283,6 +300,43 @@ function pick(guess) {
     healthText.innerText = health;
     if (health <= 0) {
       lose();
+    }
+  }
+}
+
+function fortuneCookie() {
+   update(locations[8]);
+}
+
+function pickRed() {
+  eat("Red"); // pass a string as argument
+}
+
+function pickBlue() {
+  eat("Blue"); // pass a string as argument
+}
+
+function eat(color) {
+  const randomNumber = Math.random();
+  if (randomNumber < 0.5) {  
+    if (color === "Red") { // Use triple equals for comparison
+      text.innerText = "You picked " + color + ". You just got +50 health.";
+      health += 50;
+      healthText.innerText = health;
+    } else { // Correct syntax for else statement
+      text.innerText = "You picked " + color + ". You have +20 gold.";
+      gold += 20;
+      goldText.innerText = gold;
+    }
+  } else {
+    if (color === "Red") { // Use triple equals for comparison
+      text.innerText = "You picked " + color + ". You just got -20 health.";
+      health -= 20;
+      healthText.innerText = health;
+    } else { // Correct syntax for else statement
+      text.innerText = "You picked " + color + ". As you were savoring the cookie, you were pickpocketed of 20 gold.";
+      gold -= 20;
+      goldText.innerText = gold;
     }
   }
 }
